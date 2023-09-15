@@ -1,0 +1,7 @@
+transformers==4.31.0
+accelerate
+colorama
+bitsandbytes
+sentencepiece
+transformers_stream_generator
+cpm_kernels

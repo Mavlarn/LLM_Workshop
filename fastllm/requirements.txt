@@ -1,0 +1,5 @@
+sentencepiece
+transformers==4.30.2
+icetk
+cpm_kernels
+accelerate

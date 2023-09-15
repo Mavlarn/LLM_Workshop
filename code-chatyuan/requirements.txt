@@ -1,0 +1,5 @@
+sagemaker
+transformers
+torch
+SentencePiece
+clueai
