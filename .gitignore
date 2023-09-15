@@ -2,6 +2,11 @@ contents
 med_qa_FAISS_index
 test
 z-bench
+__pycache__
+AdvertiseGen
+finetune_data
+ChatGLM2-6B
+
 
 .ipynb_checkpoints
 .ipynb_checkpoints/*
