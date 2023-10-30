@@ -1,11 +1,11 @@
-contents
-med_qa_FAISS_index
-test
-z-bench
+test_cases/contents
+test_cases/med_qa_FAISS_index
+test_cases/test
+test_cases/z-bench
 __pycache__
-AdvertiseGen
-finetune_data
-ChatGLM2-6B
+finetune/AdvertiseGen
+finetune/finetune_data
+finetune/ChatGLM2-6B
 
 
 .ipynb_checkpoints
