@@ -34,8 +34,6 @@ def create_payload(input, instruct=None, model_code=None, history=[], parameters
 
 
 def generate_prompt(input, instruct=None, history=[], model_code=None):
-    if not model_code:
-        return input
     if model_code == 'baichuan':
         return generate_prompt_baichuan(input, instruct)
     if model_code == 'baichuan2':
@@ -48,7 +46,8 @@ def generate_prompt(input, instruct=None, history=[], model_code=None):
         return generate_prompt_falcon(input, instruct)
     elif model_code == 'cpmbee':
         return generate_prompt_cpmbee(input, instruct)
-    return input
+    else:
+        return instruct + input
 
 
 def generate_prompt_baichuan(input, instruct):
@@ -66,7 +65,8 @@ def generate_prompt_baichuan2(input, instruct, history=[]):
             messages.append({"role": 'user', "content": msg.content})
         elif type(msg) == AIMessage:
             messages.append({"role": 'assistant', "content": msg.content})
-    messages.append({"role": "user", "content": input})
+    if input:
+        messages.append({"role": "user", "content": input})
     return messages
 
 

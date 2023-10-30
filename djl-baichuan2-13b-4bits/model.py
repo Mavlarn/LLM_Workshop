@@ -2,7 +2,7 @@ from djl_python import Input, Output
 import torch
 import logging
 import math
-import os, json
+import os, json, ast
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers.generation import GenerationConfig
@@ -59,13 +59,19 @@ def handle(inputs: Input):
     print(f'input data: {data}')
     
     input_sentences = data["inputs"]
-    if type(input_sentences) == str:
-        input_sentences = json.loads(input_sentences)
+    
+    if type(input_sentences) == str and '{' in input_sentences and  '}' in input_sentences:
+        input_sentences = ast.literal_eval(input_sentences)
     params = data.get("parameters", {})
     # print(f'inputs: {input_sentences}, type is: {type(input_sentences)}')
     
     if params.get("max_new_tokens"):
         model.generation_config.max_new_tokens = params.get("max_new_tokens")
+    if params.get("temperature"):
+        model.generation_config.temperature = params.get("temperature")
+
+    do_sample = params.get("do_sample", True)
+    model.generation_config.do_sample = do_sample
 
     stream = data.get('stream', False)  
     outputs = Output()
